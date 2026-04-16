@@ -116,7 +116,7 @@
     background: transparent;
     border: none;
     color: white;
-    font-size: 11.5px;
+    font-size: 11px;
     width: 100%;
     resize: none;
     line-height: 1.6;
@@ -541,7 +541,7 @@
     <div class="hdr-brand">
       <input class="co-name" id="companyName" value="K. M. ENGINEERING WORKS">
       <textarea class="co-sub" id="companySubtitle"
-        rows="3">Manufacturer all types of Hydraulic Hose Pipe, Union Switch Nipple, Shockolet, Weldolet &amp; Elbolet as per Drawing &amp; Sample
+        rows="2">Manufacturer all types of Hydraulic Hose Pipe, Union Switch Nipple, Shockolet, Weldolet &amp; Elbolet as per Drawing &amp; Sample
         Mobile No.- 9819552260 / 8451080507, Email: kmengineeringw@gmail.com
       </textarea>
     </div>
@@ -558,27 +558,27 @@
     <div class="info-grid">
       <div class="info-col">
         <div class="lbl">Bill to</div>
-        <input class="field" id="partyName" value="MG STEELS TUBES PRIVATE LIMITED">
+        <input class="field" id="partyName" value=>
         <textarea class="ta" id="partyAddress"
-          rows="3">DINKAR PADA, PO-KONDLE, TALUKA-WADA, DIST.-PALGHAR-421312</textarea>
+          rows="3"></textarea>
         <div class="lbl">Party GSTIN</div>
-        <input class="field" id="partyGstin" value="27AASCM3985D1ZY">
+        <input class="field" id="partyGstin" value=>
       </div>
       <div class="info-col">
         <div class="pair">
           <div>
             <div class="lbl">Invoice no.</div>
-            <input class="field" id="invoiceNo" value="143">
+            <input class="field" id="invoiceNo" value=>
           </div>
           <div>
             <div class="lbl">Date</div>
-            <input class="field" id="invoiceDate" value="06/12/2025">
+            <input class="field" id="invoiceDate" value="">
           </div>
         </div>
         <div class="lbl">Order no.</div>
-        <input class="field" id="orderNo" value="MGST-PO-2025-26-148">
+        <input class="field" id="orderNo" value=>
         <div class="lbl">Notes</div>
-        <textarea class="ta" id="notesPanel" rows="3" placeholder="Additional notes…"></textarea>
+        <textarea class="ta" id="notesPanel" rows="3" placeholder="…"></textarea>
       </div>
     </div>
 
@@ -676,7 +676,7 @@
 
   <script>
     const itemsBody = document.getElementById("itemsBody");
-    const MIN = 10;
+    const MIN = 5;
     function esc(v) { return String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") }
     function toNum(v) { const c = String(v ?? "").replace(/,/g, "").trim(); const p = Number(c); return Number.isFinite(p) ? p : 0 }
     function fmt(v) { const n = Number(v) || 0; if (!n) return "—"; return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
