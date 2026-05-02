@@ -48,15 +48,16 @@
     max-width: 820px;
     margin: auto;
     background: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
   }
 
   /* TOP STRIP - very top, small text */
   .top-strip {
-    background: transparent;
-    border-bottom: none;
+    background: #f2f5fb;
+    border-bottom: 1px solid #d8dde4;
     padding: 10px 20px 8px;
     display: flex;
     align-items: center;
@@ -87,7 +88,7 @@
   .top-gst {
     font-weight: 800;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     color: #111;
     width: auto;
     min-width: 140px;
@@ -186,19 +187,32 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 16px;
-    padding: 10px 20px 18px;
-    border-top: 1px solid #ccc;
+    gap: 12px;
+    padding: 8px 20px 14px;
+    border-top: 1px solid #d8dce4;
     margin-top: 14px;
+  }
+
+  .from-strip {
+    background: #f7f8fb;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
   .signature-block {
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
   }
 
   .signature-block img {
-    max-width: 170px;
-    max-height: 70px;
+    max-width: 150px;
+    max-height: 60px;
     object-fit: contain;
     display: inline-block;
   }
@@ -207,16 +221,17 @@
     font-size: 10px;
     color: #555;
     display: block;
-    margin-top: 4px;
+    margin-top: 0;
   }
 
   /* ADDRESS BAR */
   .addr-bar {
-    background: #fff;
-    border-bottom: 1px solid #ccc;
-    padding: 8px 20px;
+    background: #f8f9fc;
+    border-bottom: 1px solid #dfe3ea;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
   }
 
@@ -235,8 +250,10 @@
     color: #111;
     line-height: 1.4;
     white-space: nowrap;
-    overflow: visible;
-    text-overflow: clip;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-align: center;
     flex: 1 1 auto;
   }
 
@@ -431,12 +448,13 @@
   /* FOOTER */
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
   }
 
   .bank-col {
     padding: 10px 16px;
-    border-right: 1px solid #555
+    border-right: 1px solid #dfe3ea;
   }
 
   .bank-heading {
