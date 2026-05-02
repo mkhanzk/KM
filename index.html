@@ -7,9 +7,9 @@
 
   body {
     font-family: var(--font-sans);
-    background: var(--color-background-tertiary);
+    background: #f3f4f7;
     padding: 16px;
-    color: var(--color-text-primary)
+    color: #111;
   }
 
   .toolbar {
@@ -47,129 +47,163 @@
   .sheet {
     max-width: 820px;
     margin: auto;
-    background: var(--color-background-primary);
-    border: 1px solid #555;
-    overflow: hidden
+    background: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 10px;
   }
 
   /* TOP STRIP - very top, small text */
   .top-strip {
-    background: #f0f4fa;
-    border-bottom: 1px solid #555;
-    padding: 4px 20px;
+    background: transparent;
+    border-bottom: none;
+    padding: 10px 20px 8px;
     display: flex;
-    justify-content: space-between;
-    align-items: center
+    align-items: center;
+    gap: 12px;
   }
 
+  .top-strip span,
   .top-strip input {
     background: transparent;
     border: none;
-    font-size: 9.5px;
-    color: #444;
-    letter-spacing: .3px
+    font-family: var(--font-sans);
+    color: #111;
+    letter-spacing: .25px;
+    padding: 2px 0;
+  }
+
+  .top-strip input {
+    font-size: 11px;
   }
 
   .top-strip input:focus {
-    outline: none
+    outline: none;
+    color: #111;
   }
 
   .top-gst {
-    font-weight: 700;
+    font-weight: 800;
     text-align: center;
-    width: 160px
+    font-size: 14px;
+    color: #111;
+    width: auto;
+    min-width: 140px;
+    letter-spacing: 1px;
   }
 
   .top-juris {
     text-align: left;
-    flex: 1
+    flex: 1;
+    font-weight: 600;
+    color: #444;
+    font-size: 12px;
+  }
+
+  .top-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 11px;
+    line-height: 1.4;
+    min-width: 180px;
+  }
+
+  .top-contact .contact-inp {
+    text-align: right;
+    width: 100%;
+    border-bottom: none;
+    color: #111;
+    font-size: 11px;
+    letter-spacing: .2px;
   }
 
   /* HEADER - left aligned */
   .hdr {
-    background: #12305c;
+    background: transparent;
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    padding: 16px;
-    px 200px;
+    grid-template-columns: 120px minmax(220px, 1fr) 120px;
+    align-items: center;
+    padding: 12px 20px 8px;
     gap: 16px;
-    border-bottom: 1px solid #0e2244
+    border-bottom: 1px solid #ccc;
   }
 
-  .hdr-brand {}
+  .hdr-left,
+  .hdr-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hdr-img {
+    width: 110px;
+    max-height: 88px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .hdr-center {
+    text-align: center;
+  }
 
   .co-name {
     background: transparent;
     border: none;
-    color: #fff;
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: .5px;
+    color: #0b2a47;
+    font-size: 23px;
+    font-weight: 750;
+    letter-spacing: 1px;
     width: 100%;
     display: block;
-    margin-bottom: 5px;
-    text-align: center
+    margin-bottom: 6px;
+    text-align: center;
+    line-height: 1.05;
   }
 
   .co-sub {
     background: transparent;
     border: none;
-    color: white;
-    font-size: 11px;
+    color: #222;
+    font-size: 12px;
     width: 100%;
     resize: none;
-    line-height: 1.6;
+    line-height: 1.4;
     display: block;
     text-align: center;
     overflow: hidden;
-    height: calc(1.6em * 2);
-    max-height: calc(1.6em * 2);
-  }
-  
-  .contact-lbl {
-    font-size: 9px;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    white-space: nowrap
-  }
-
-  .contact-inp {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 11px;
-    text-align: right;
-    width: 150px
-  }
-
-  .contact-inp:focus {
-    outline: none;
-    color: #fff
+    height: calc(1.4em * 2);
+    max-height: calc(1.4em * 2);
   }
 
   /* ADDRESS BAR */
   .addr-bar {
-    background: #f4f6fb;
-    border-bottom: 1px solid #555;
-    padding: 6px 70px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
-    gap: 8px
+    gap: 12px;
   }
 
   .addr-icon {
-    font-size: 12px;
-    color: black
+    font-size: 11px;
+    color: #111;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    flex: 0 0 auto;
   }
 
-  .addr-inp {
-    background: transparent;
-    border: none;
+  .addr-text {
+    font-family: var(--font-sans);
     font-size: 11px;
-    color: black;
-    flex: 1
+    color: #111;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    flex: 1 1 auto;
   }
 
   /* PARTY + META */
@@ -198,19 +232,20 @@
 
   .field {
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgba(0,0,0,.2);
     background: transparent;
+    font-family: var(--font-sans);
     font-size: 13px;
-    color: var(--color-text-primary);
+    color: #111;
     width: 100%;
-    padding: 2px 0 5px;
+    padding: 5px 0;
     margin-bottom: 11px;
     display: block
   }
 
   .field:focus {
     outline: none;
-    border-bottom-color: #1a3a6b
+    border-bottom-color: #1a3a6b;
   }
 
   .field:last-child {
@@ -218,13 +253,14 @@
   }
 
   .ta {
-    border: 1px solid #ccc;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
     background: transparent;
+    font-family: var(--font-sans);
     font-size: 12px;
-    color: var(--color-text-primary);
+    color: #111;
     width: 100%;
-    padding: 6px 8px;
-    border-radius: 4px;
+    padding: 5px 0;
     resize: none;
     margin-bottom: 11px;
     line-height: 1.5
@@ -232,7 +268,7 @@
 
   .ta:focus {
     outline: none;
-    border-color: #1a3a6b
+    border-bottom-color: #1a3a6b
   }
 
   .pair {
@@ -248,8 +284,8 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .6px;
-    color: #666;
-    background: #f4f6fb;
+    color: #fff;
+    background: #0d2143;
     border-bottom: 1px solid #555;
     border-top: 1px solid #555
   }
@@ -276,8 +312,9 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .5px;
-    color: #555;
-    border: 1px solid #999;
+    color: #fff;
+    border: 1px solid #444;
+    background: #0d2143;
     text-align: left
   }
 
@@ -292,17 +329,17 @@
 
   .ci {
     border: none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
     background: transparent;
+    font-family: var(--font-sans);
     font-size: 12px;
     width: 100%;
-    color: var(--color-text-primary);
-    padding: 5px 4px
+    color: #111;
+    padding: 4px 0;
   }
 
   .ci:focus {
-    background: #eef3ff;
-    border-radius: 3px;
-    outline: none
+    outline: none;
   }
 
   .ci.r {
@@ -350,7 +387,7 @@
 
   .sub-lbl {
     font-size: 10px;
-    color: #666;
+    color: #333;
     text-transform: uppercase;
     letter-spacing: .5px;
     white-space: nowrap;
@@ -360,7 +397,7 @@
   .sub-val {
     font-size: 16px;
     font-weight: 600;
-    color: #1a3a6b;
+    color: #111;
     white-space: nowrap;
     min-width: 90px;
     text-align: right
@@ -408,9 +445,10 @@
     background: transparent;
     font-size: 12px;
     font-weight: 500;
-    color: var(--color-text-primary);
+    color: #111;
     text-align: right;
-    width: 100%
+    width: 100%;
+    padding: 4px 0;
   }
 
   .binp:focus {
@@ -481,7 +519,7 @@
 
   /* FROM STRIP */
   .from-strip {
-    background: #1a3a6b;
+    background: #f4f6fb;
     border-top: 1px solid #0e2244;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -492,7 +530,7 @@
 
   .from-lbl {
     font-size: 9px;
-    color: #5a85b0;
+    color: #333;
     text-transform: uppercase;
     letter-spacing: .6px
   }
@@ -500,16 +538,26 @@
   .from-inp {
     background: transparent;
     border: none;
-    color: #fff;
+    color: #111;
     font-size: 13px;
     font-weight: 500;
     text-align: right;
     flex: 1;
-    width: 100%
+    width: 100%;
+    padding: 4px 0;
   }
 
   .from-inp:focus {
     outline: none
+  }
+
+  .signature-block img {
+    max-width: 220px;
+    max-height: 90px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: inline-block;
   }
 
   @media print {
@@ -534,27 +582,31 @@
 
   <!-- TOP STRIP: GST INVOICE + Jurisdiction at very top -->
   <div class="top-strip">
-    <input class="top-juris" id="subjectNote" value="Subject to Mumbai Jurisdiction only">
-    <input class="top-gst" id="invoiceType" value="GST INVOICE">
-    <div style="flex:1"></div>
+    <span class="top-juris">Subjects to Mumbai Jurisdiction only</span>
+    <span class="top-gst">GST INVOICE</span>
+    <div class="top-contact">
+      <span class="contact-inp">Mobile: 9819552260 / 8451080507</span>
+      <span class="contact-inp">Email: kmengineeringw@gmail.com</span>
+    </div>
   </div>
 
-  <!-- HEADER: name + subtitle LEFT aligned, contact RIGHT -->
+  <!-- HEADER: logo images + centered company title -->
   <div class="hdr">
-    <div class="hdr-brand">
+    <div class="hdr-left">
+      <img class="hdr-img" src="image.png" alt="Product image left">
+    </div>
+    <div class="hdr-center">
       <input class="co-name" id="companyName" value="K. M. ENGINEERING WORKS">
       <textarea class="co-sub" id="companySubtitle"
-        rows="2">Manufacturer all types of Hydraulic Hose Pipe, Union Switch Nipple, Shockolet, Weldolet &amp; Elbolet as per Drawing &amp; Sample
-        Mobile No.- 9819552260 / 8451080507, Email: kmengineeringw@gmail.com
-      </textarea>
+        rows="2">Manufacturer all types of Hydraulic Hose Pipe, Union Switch Nipple, Shockolet, Weldolet &amp; Elbolet as per Drawing &amp; Sample</textarea>
     </div>
-
+    <div class="hdr-right">
+      <img class="hdr-img" src="image (2).png" alt="Product image right">
+    </div>
   </div>
     <!-- ADDRESS -->
     <div class="addr-bar">
-      <span class="addr-icon"></span>
-      <input class="addr-inp" id="officeAddress"
-        value="Plot No 733, Gala No 3, Ground floor, Modi Compound, K. R. Mhatre Marg, opposite Reay Road station, Mazgaon Mumbai - 400010">
+      <div class="addr-text" id="officeAddress">Plot No 733, Gala No 3, Ground floor, Modi Compound, K. R. Mhatre Marg, opposite Reay Road station, Mazgaon Mumbai - 400010</div>
     </div>
 
     <!-- PARTY + META -->
@@ -575,7 +627,7 @@
           </div>
           <div>
             <div class="lbl">Date</div>
-            <input class="field" id="invoiceDate" value="">
+            <input class="field" id="invoiceDate" type="date" value="">
           </div>
         </div>
         <div class="lbl">Order no.</div>
@@ -673,6 +725,10 @@
     <div class="from-strip">
       <span class="from-lbl">From</span>
       <input class="from-inp" id="fromCompany" value="K M ENGINEERING WORKS">
+    </div>
+
+    <div class="signature-block" style="padding: 0 20px 10px; text-align: right;">
+      <img src="sign_km_cropped.jpeg" alt="KM Engineering Works Signature">
     </div>
 
   </div>
