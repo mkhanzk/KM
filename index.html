@@ -769,7 +769,7 @@
 
   <script>
     const itemsBody = document.getElementById("itemsBody");
-    const MIN = 5;
+    const MIN = 3;
     function esc(v) { return String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") }
     function toNum(v) { const c = String(v ?? "").replace(/,/g, "").trim(); const p = Number(c); return Number.isFinite(p) ? p : 0 }
     function fmt(v) { const n = Number(v) || 0; if (!n) return "—"; return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
