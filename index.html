@@ -60,7 +60,9 @@
     padding: 10px 20px 8px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
+    position: relative;
   }
 
   .top-strip span,
@@ -90,6 +92,10 @@
     width: auto;
     min-width: 140px;
     letter-spacing: 1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
   }
 
   .top-juris {
@@ -176,6 +182,34 @@
     max-height: calc(1.4em * 2);
   }
 
+  .from-sign-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 20px 18px;
+    border-top: 1px solid #ccc;
+    margin-top: 14px;
+  }
+
+  .signature-block {
+    text-align: right;
+  }
+
+  .signature-block img {
+    max-width: 170px;
+    max-height: 70px;
+    object-fit: contain;
+    display: inline-block;
+  }
+
+  .sig-label {
+    font-size: 10px;
+    color: #555;
+    display: block;
+    margin-top: 4px;
+  }
+
   /* ADDRESS BAR */
   .addr-bar {
     background: #fff;
@@ -210,15 +244,18 @@
   .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid #555
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fafafa;
   }
 
   .info-col {
-    padding: 14px 20px
+    padding: 16px 20px;
   }
 
   .info-col+.info-col {
-    border-left: 1px solid #555
+    border-left: 1px solid #ccc;
   }
 
   .lbl {
@@ -721,14 +758,16 @@
       </div>
     </div>
 
-    <!-- FROM STRIP -->
-    <div class="from-strip">
-      <span class="from-lbl">From</span>
-      <input class="from-inp" id="fromCompany" value="K M ENGINEERING WORKS">
-    </div>
-
-    <div class="signature-block" style="padding: 0 20px 10px; text-align: right;">
-      <img src="sign_km_cropped.jpeg" alt="KM Engineering Works Signature">
+    <!-- FROM STRIP + SIGNATURE -->
+    <div class="from-sign-row">
+      <div class="from-strip">
+        <span class="from-lbl">From</span>
+        <input class="from-inp" id="fromCompany" value="K M ENGINEERING WORKS">
+      </div>
+      <div class="signature-block">
+        <img src="sign_km_cropped.jpeg" alt="KM Engineering Works Signature">
+        <span class="sig-label">Authorised Signatory</span>
+      </div>
     </div>
 
   </div>
