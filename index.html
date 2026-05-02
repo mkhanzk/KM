@@ -48,16 +48,15 @@
     max-width: 820px;
     margin: auto;
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
   }
 
   /* TOP STRIP - very top, small text */
   .top-strip {
-    background: #f2f5fb;
-    border-bottom: 1px solid #d8dde4;
+    background: transparent;
+    border-bottom: none;
     padding: 10px 20px 8px;
     display: flex;
     align-items: center;
@@ -88,7 +87,7 @@
   .top-gst {
     font-weight: 800;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     color: #111;
     width: auto;
     min-width: 140px;
@@ -187,32 +186,19 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 12px;
-    padding: 8px 20px 14px;
-    border-top: 1px solid #d8dce4;
+    gap: 16px;
+    padding: 10px 20px 18px;
+    border-top: 1px solid #ccc;
     margin-top: 14px;
-  }
-
-  .from-strip {
-    background: #f7f8fb;
-    padding: 10px 14px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
   }
 
   .signature-block {
     text-align: right;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
   }
 
   .signature-block img {
-    max-width: 150px;
-    max-height: 60px;
+    max-width: 170px;
+    max-height: 70px;
     object-fit: contain;
     display: inline-block;
   }
@@ -221,17 +207,16 @@
     font-size: 10px;
     color: #555;
     display: block;
-    margin-top: 0;
+    margin-top: 4px;
   }
 
   /* ADDRESS BAR */
   .addr-bar {
-    background: #f8f9fc;
-    border-bottom: 1px solid #dfe3ea;
-    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 12px;
   }
 
@@ -250,10 +235,8 @@
     color: #111;
     line-height: 1.4;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    text-align: center;
+    overflow: visible;
+    text-overflow: clip;
     flex: 1 1 auto;
   }
 
@@ -292,8 +275,8 @@
     font-size: 13px;
     color: #111;
     width: 100%;
-    padding: 3px 0;
-    margin-bottom: 8px;
+    padding: 5px 0;
+    margin-bottom: 11px;
     display: block
   }
 
@@ -314,10 +297,10 @@
     font-size: 12px;
     color: #111;
     width: 100%;
-    padding: 3px 0;
+    padding: 5px 0;
     resize: none;
-    margin-bottom: 8px;
-    line-height: 1.3
+    margin-bottom: 11px;
+    line-height: 1.5
   }
 
   .ta:focus {
@@ -333,7 +316,7 @@
 
   /* ITEMS TABLE */
   .items-wrap {
-    padding: 0 20px 10px
+    padding: 0 20px 14px
   }
 
   .items-wrap table {
@@ -341,7 +324,7 @@
     border-collapse: collapse;
     table-layout: fixed;
     border: 1px solid #999;
-    margin-top: 6px
+    margin-top: 8px
   }
 
   .items-wrap thead tr {
@@ -349,7 +332,7 @@
   }
 
   .items-wrap th {
-    padding: 6px 6px;
+    padding: 8px 6px;
     font-size: 9px;
     font-weight: 600;
     text-transform: uppercase;
@@ -366,7 +349,7 @@
 
   .items-wrap td {
     border: 1px solid #ccc;
-    padding: 2px 4px
+    padding: 1px 2px
   }
 
   .ci {
@@ -382,6 +365,14 @@
 
   .ci:focus {
     outline: none;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+
+  .ci.bold {
+    font-weight: 700;
   }
 
   .ci.r {
@@ -448,32 +439,29 @@
   /* FOOTER */
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+    grid-template-columns: 1fr 1fr
   }
 
   .bank-col {
-    padding: 10px 16px;
-    border-right: 1px solid #dfe3ea;
+    padding: 14px 20px;
+    border-right: 1px solid #555
   }
 
   .bank-heading {
     font-size: 9px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: .5px;
+    letter-spacing: .6px;
     color: #666;
-    margin-bottom: 8px;
-    line-height: 1.2;
+    margin-bottom: 10px
   }
 
   .brow {
     display: grid;
     grid-template-columns: 110px 1fr;
     align-items: center;
-    padding: 3px 0;
-    border-bottom: 1px solid #e0e0e0;
-    line-height: 1.2;
+    padding: 5px 0;
+    border-bottom: 1px solid #e0e0e0
   }
 
   .brow:last-child {
@@ -828,5 +816,21 @@
     for (let i = 0; i < MIN; i++)createRow();
     renumber(); recalc();
     itemsBody.addEventListener("input", e => { if (e.target.classList.contains("qty") || e.target.classList.contains("rate") || e.target.classList.contains("particulars") || e.target.classList.contains("hsn")) recalc() });
+    document.addEventListener("keydown", e => {
+      if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== "b") return;
+      const active = document.activeElement;
+      if (!active) return;
+      const tag = active.tagName.toLowerCase();
+      if (tag === "textarea") {
+        e.preventDefault();
+        active.classList.toggle("bold");
+        return;
+      }
+      if (tag !== "input") return;
+      const type = active.type;
+      if (type !== "text" && type !== "search" && type !== "tel" && type !== "url" && type !== "email") return;
+      e.preventDefault();
+      active.classList.toggle("bold");
+    });
     document.getElementById("addRowBtn").addEventListener("click", () => { createRow(); renumber(); recalc() });
   </script>
