@@ -501,6 +501,42 @@
     margin-bottom: 10px
   }
 
+  .tax-mode {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border: 1px solid #d9deea;
+    border-radius: 6px;
+    background: #f6f8fd
+  }
+
+  .tax-mode-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #4a5770;
+    text-transform: uppercase;
+    letter-spacing: .5px
+  }
+
+  .tax-mode-select {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #c6cfdf;
+    border-radius: 6px;
+    background: #fff;
+    color: #111;
+    font-size: 12px;
+    font-weight: 600
+  }
+
+  .tax-mode-select:focus {
+    outline: 1px solid #6d8cc1;
+    outline-offset: 0
+  }
+
   .trow {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -600,6 +636,10 @@
 
     .sheet {
       border: none
+    }
+
+    .tax-mode {
+      display: none
     }
   }
 </style>
@@ -752,6 +792,13 @@
       </div>
       <div class="tax-col">
         <div class="tax-heading">Tax summary</div>
+        <div class="tax-mode">
+          <span class="tax-mode-label">GST Type</span>
+          <select class="tax-mode-select" id="gstMode">
+            <option value="split">SGST 9% + CGST 9%</option>
+            <option value="igst">IGST 18%</option>
+          </select>
+        </div>
         <div class="trow"><span class="tlbl">Subtotal</span><span class="tval" id="subtotalVal">—</span></div>
         <div class="trow"><span class="tlbl">SGST (9%)</span><span class="tval" id="sgstAmount">—</span></div>
         <div class="trow"><span class="tlbl">CGST (9%)</span><span class="tval" id="cgstAmount">—</span></div>
@@ -782,6 +829,7 @@
 
   <script>
     const itemsBody = document.getElementById("itemsBody");
+    const gstMode = document.getElementById("gstMode");
     const MIN = 3;
     function esc(v) { return String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") }
     function toNum(v) { const c = String(v ?? "").replace(/,/g, "").trim(); const p = Number(c); return Number.isFinite(p) ? p : 0 }
@@ -815,20 +863,30 @@
     function recalc() {
       let sub = 0;
       Array.from(itemsBody.querySelectorAll("tr")).forEach(r => { sub += updRow(r) });
-      const sg = sub * .09, cg = sub * .09, gt = sub + sg + cg;
+      const splitMode = gstMode.value === "split";
+      const sg = splitMode ? sub * .09 : 0;
+      const cg = splitMode ? sub * .09 : 0;
+      const ig = splitMode ? 0 : sub * .18;
+      const gt = sub + sg + cg + ig;
       document.getElementById("subtotalVal").textContent = fmt(sub);
       document.getElementById("subtotalDisplay").textContent = sub ? fmtAmt(sub) : "—";
       document.getElementById("sgstAmount").textContent = fmt(sg);
       document.getElementById("cgstAmount").textContent = fmt(cg);
+      document.getElementById("sgstAmount").previousElementSibling.textContent = splitMode ? "SGST (9%)" : "SGST (0%)";
+      document.getElementById("cgstAmount").previousElementSibling.textContent = splitMode ? "CGST (9%)" : "CGST (0%)";
+      document.getElementById("igstAmount").previousElementSibling.textContent = "IGST (18%)";
+      document.getElementById("igstAmount").textContent = fmt(ig);
       document.getElementById("igstAmount").textContent = "—";
       document.getElementById("transportCharge").textContent = "—";
       document.getElementById("roundOff").textContent = "—";
+      document.getElementById("igstAmount").textContent = fmt(ig);
       document.getElementById("grandTotal").textContent = fmt(gt);
       document.getElementById("amountWords").value = a2w(gt);
     }
     for (let i = 0; i < MIN; i++)createRow();
     renumber(); recalc();
     itemsBody.addEventListener("input", e => { if (e.target.classList.contains("qty") || e.target.classList.contains("rate") || e.target.classList.contains("particulars") || e.target.classList.contains("hsn")) recalc() });
+    gstMode.addEventListener("change", recalc);
     document.addEventListener("keydown", e => {
       if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== "b") return;
       const active = document.activeElement;
