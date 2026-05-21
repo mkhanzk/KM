@@ -658,10 +658,23 @@
             <div class="lbl">Invoice no.</div>
             <input class="field" id="invoiceNo" value=>
           </div>
-          <div>
-            <div class="lbl">Date</div>
-            <input class="field" id="invoiceDate" type="date" value="">
-          </div>
+         <div>
+  <div class="lbl">Date</div>
+  <input class="field" id="invoiceDate" type="text" placeholder="DD-MM-YYYY">
+</div>
+
+<script>
+  const input = document.getElementById("invoiceDate");
+
+  // Set today's date in DD-MM-YYYY format
+  const today = new Date();
+
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const year = today.getFullYear();
+
+  input.value = `${day}-${month}-${year}`;
+</script>
         </div>
         <div class="lbl">Order no.</div>
         <input class="field" id="orderNo" value=>
